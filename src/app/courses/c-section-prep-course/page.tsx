@@ -1,11 +1,202 @@
+'use client'
+
 import { Metadata } from 'next'
 import Link from 'next/link'
+import { useEffect } from 'react'
 import { Clock, Users, Star, CheckCircle, PlayCircle, Download, Shield } from 'lucide-react'
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'C-Section Prep Course | Complete Cesarean Birth Preparation | CSUK',
   description: 'Comprehensive 3-hour course covering everything you need to know about C-section preparation, surgery, and early recovery. Expert-led education for confident cesarean birth.',
 }
+
+const TeachableEmbed = () => {
+  useEffect(() => {
+    // Load Teachable embed script functionality
+    const handleCloseModal = (event: any) => {
+      event.target.closest('.t-modal')?.classList.remove('open');
+      document.body.classList.remove('t-modal-open');
+    };
+
+    const handleTeachableBuyButtonClick = (event: any) => {
+      const embed = event.target.closest('.teachable-embed-course-2075674');
+      const radios = embed?.querySelectorAll('input.teachable-pricing-plan-course-2075674');
+      
+      radios?.forEach((radio: any) => {
+        if (radio.checked) {
+          window.location.href = radio.value;
+        }
+      });
+    };
+
+    const handleParentPricingPlanClick = (event: any) => {
+      const parentDiv = event.currentTarget.closest('.teachable-embed-course-2075674');
+      const divs = Array.from(parentDiv?.querySelectorAll('div') || []).filter((div: any) => {
+        return div.querySelector('label') && div.querySelector('input');
+      });
+
+      divs.forEach((div: any) => {
+        div.style.borderColor = '#E4E4E4';
+      });
+
+      const div = event.currentTarget;
+      const radioButton = div.querySelector('input[type="radio"]');
+      if (radioButton) {
+        radioButton.click();
+        div.style.borderColor = '#A7A7A7';
+      }
+    };
+
+    // Initialize event listeners
+    document.querySelectorAll('.teachable-pricing-plan-course-2075674').forEach((radio, index) => {
+      const label = radio.closest('label');
+      const id = radio.getAttribute('id');
+      if (id && !id.includes('-index-')) {
+        const indexedId = id + '-index-' + index;
+        label?.setAttribute('for', indexedId);
+        radio.setAttribute('id', indexedId);
+      }
+      const divEl = label?.closest("div");
+      divEl?.addEventListener("click", handleParentPricingPlanClick);
+    });
+
+    document.querySelectorAll('.teachable-buy-button-course-2075674').forEach((button) => {
+      button.addEventListener('click', handleTeachableBuyButtonClick);
+    });
+
+    return () => {
+      // Cleanup event listeners
+      document.querySelectorAll('.teachable-pricing-plan-course-2075674').forEach((radio) => {
+        const divEl = radio.closest('div');
+        divEl?.removeEventListener("click", handleParentPricingPlanClick);
+      });
+      document.querySelectorAll('.teachable-buy-button-course-2075674').forEach((button) => {
+        button.removeEventListener('click', handleTeachableBuyButtonClick);
+      });
+    };
+  }, []);
+
+  return (
+    <div 
+      className="teachable-embed-course-2075674 mx-auto" 
+      style={{
+        color: 'rgb(0, 40, 85)',
+        width: '488px',
+        borderRadius: '8px',
+        border: '1px solid rgb(228, 228, 228)',
+        backgroundColor: 'rgb(255, 255, 255)',
+        paddingBottom: '16px',
+        wordBreak: 'break-word'
+      }}
+    >
+      <img 
+        src="https://static-media.hotmart.com/guWwE4qVR9Smjxol8nqc50owjiM=/705x0/https://uploads.teachablecdn.com/attachments/on5Ih8XoRjGQgymiWP5E_prep-teachable.jpg" 
+        alt="C-Section Prep Course" 
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '274.5px',
+          borderRadius: '8px 8px 0px 0px'
+        }}
+      />
+      <h1 style={{
+        fontWeight: 600,
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px'
+      }}>
+        C-Section Prep Course
+      </h1>
+      <p style={{
+        fontWeight: 400,
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px',
+        lineHeight: '150%'
+      }}>
+        Feel empowered, confident and prepared going into your c-section birth.
+      </p>
+      <form>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '16px',
+          borderRadius: '0px',
+          margin: '16px',
+          border: '1px solid rgb(167, 167, 167)'
+        }}>
+          <label 
+            htmlFor="pricing-plan-4734006" 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontWeight: 400,
+              fontSize: '16px',
+              fontStyle: 'normal',
+              color: 'rgb(0, 40, 85)',
+              maxWidth: 'calc(80%)'
+            }}
+          >
+            <input 
+              className="teachable-pricing-plan-course-2075674" 
+              id="pricing-plan-4734006" 
+              name="pricing-plan" 
+              type="radio" 
+              data-plan-type="One-Time Purchase" 
+              value="https://courses.csectionuk.com/purchase?product_id=4734006&user_src=embed_buy_button&embed=true" 
+              defaultChecked
+              style={{ display: 'none' }}
+            />
+            <span style={{
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              paddingRight: '8px'
+            }}>
+              One-Time Purchase
+            </span>
+          </label>
+          <span style={{
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            textAlign: 'end',
+            fontWeight: 600
+          }}>
+            £39.99
+          </span>
+        </div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          margin: '16px'
+        }}>
+          <button 
+            className="teachable-buy-button-course-2075674" 
+            type="button" 
+            style={{
+              border: '1px solid rgb(146, 193, 233)',
+              borderRadius: '0px',
+              backgroundColor: 'rgb(146, 193, 233)',
+              padding: '16px',
+              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontWeight: 600,
+              fontSize: '16px',
+              fontStyle: 'normal',
+              color: 'rgb(0, 40, 85)',
+              cursor: 'pointer'
+            }}
+          >
+            Buy now
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default function CSectionPrepCoursePage() {
   const modules = [
@@ -99,38 +290,8 @@ export default function CSectionPrepCoursePage() {
               </div>
             </div>
 
-            <div className="bg-navy-light rounded-2xl p-8 text-white">
-              <h3 className="text-2xl font-bold mb-6">What&apos;s Included</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start">
-                  <CheckCircle size={20} className="mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="font-semibold">3+ Hours of Expert Content</div>
-                    <div className="text-gray-300 text-sm">Comprehensive video lessons and resources</div>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <Download size={20} className="mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="font-semibold">Downloadable Resources</div>
-                    <div className="text-gray-300 text-sm">Checklists, guides, and worksheets</div>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <Shield size={20} className="mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="font-semibold">Lifetime Access</div>
-                    <div className="text-gray-300 text-sm">Watch anytime, anywhere, forever</div>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <CheckCircle size={20} className="mr-3 mt-1 flex-shrink-0" />
-                  <div>
-                    <div className="font-semibold">Certificate of Completion</div>
-                    <div className="text-gray-300 text-sm">Official completion certificate</div>
-                  </div>
-                </li>
-              </ul>
+            <div className="flex justify-center">
+              <TeachableEmbed />
             </div>
           </div>
         </div>
