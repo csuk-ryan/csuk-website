@@ -207,8 +207,8 @@ export default function DigitalProductsPage() {
                           </span>
                         )}
                       </div>
-                      {product.originalPrice && (
-                        <div className="text-sm text-gray-500 line-through">{product.originalPrice}</div>
+                      {(product as any).originalPrice && (
+                        <div className="text-sm text-gray-500 line-through">{(product as any).originalPrice}</div>
                       )}
                     </div>
 
@@ -218,28 +218,28 @@ export default function DigitalProductsPage() {
 
                     {/* Product Stats */}
                     <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
-                      {product.duration && (
+                      {(product as any).duration && (
                         <div className="flex items-center">
                           <Clock className="h-4 w-4 mr-1" />
-                          {product.duration}
+                          {(product as any).duration}
                         </div>
                       )}
-                      {product.students && (
+                      {(product as any).students && (
                         <div className="flex items-center">
                           <Users className="h-4 w-4 mr-1" />
-                          {product.students}
+                          {(product as any).students}
                         </div>
                       )}
-                      {product.downloads && (
+                      {(product as any).downloads && (
                         <div className="flex items-center">
                           <Download className="h-4 w-4 mr-1" />
-                          {product.downloads}
+                          {(product as any).downloads}
                         </div>
                       )}
-                      {product.usage && (
+                      {(product as any).usage && (
                         <div className="flex items-center">
                           <Users className="h-4 w-4 mr-1" />
-                          {product.usage}
+                          {(product as any).usage}
                         </div>
                       )}
                       {product.rating && (

@@ -124,9 +124,9 @@ export default function Header() {
                                 <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
                                   {item.name}
                                 </div>
-                                {item.description && (
+                                {(item as any).description && (
                                   <div className="text-gray-500 text-xs mt-1 leading-relaxed">
-                                    {item.description}
+                                    {(item as any).description}
                                   </div>
                                 )}
                               </Link>
@@ -225,9 +225,9 @@ export default function Header() {
                                 <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
                                   {item.name}
                                 </div>
-                                {item.description && (
+                                {(item as any).description && (
                                   <div className="text-gray-500 text-xs mt-1 leading-relaxed">
-                                    {item.description}
+                                    {(item as any).description}
                                   </div>
                                 )}
                               </Link>

@@ -260,7 +260,7 @@ export default function ScarAnalyserPage() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <img 
-                      src={previewUrl} 
+                      src={previewUrl || ''} 
                       alt="Analyzed scar" 
                       className="w-full h-auto rounded-lg shadow-md mb-4"
                     />
