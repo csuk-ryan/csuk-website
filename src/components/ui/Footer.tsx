@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                 <span className="text-navy font-bold text-lg">C</span>
               </div>
-              <span className="ml-2 text-xl font-bold">CSUK</span>
+              <span className="ml-2 text-xl font-bold">C-Section UK</span>
             </div>
             <p className="text-gray-300 mb-4">
               The #1 C-section education website for women globally. 

@@ -30,6 +30,7 @@ export default function Header() {
   const resourcesDropdown = [
     { name: 'Blog', href: '/blog', description: 'Latest c-section insights and tips' },
     { name: 'Birth Stories', href: '/positive-birth-stories', description: 'Inspiring positive c-section experiences' },
+    { name: 'Free C-Section Audio', href: '/resources/free-c-section-audio', description: 'Relaxation & preparation audio content' },
     { name: 'Scar Analyser', href: '/resources/scar-analyser', description: 'Free AI-powered scar assessment tool' },
     { name: 'Recovery Timeline', href: '/resources/recovery-timeline', description: 'Track your healing journey step-by-step' },
     { name: 'Affirmation Generator', href: '/resources/affirmation-generator', description: 'Positive self-talk for your c-section' },
@@ -136,36 +137,47 @@ export default function Header() {
               </Link>
 
               {/* Resources Dropdown */}
-              <div className="relative">
-                <button
-                  onMouseEnter={() => setActiveDropdown('resources')}
-                  onMouseLeave={() => setActiveDropdown(null)}
-                  className="text-navy hover:text-navy-light px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
-                >
+              <div className="relative group">
+                <button className="text-navy hover:text-navy-light px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
                   Resources
                   <ChevronDown size={16} className="ml-1" />
                 </button>
-                {activeDropdown === 'resources' && (
-                  <div 
-                    className="absolute top-full left-0 mt-2 w-56 bg-white shadow-xl rounded-lg border border-gray-200 z-50"
-                    onMouseEnter={() => setActiveDropdown('resources')}
-                    onMouseLeave={() => setActiveDropdown(null)}
-                  >
-                    <div className="p-4">
-                      <div className="space-y-1">
-                        {resourcesDropdown.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="block text-gray-600 hover:text-navy text-sm py-2 px-3 rounded-md hover:bg-gray-50 transition-all duration-150"
-                          >
+                <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-xl rounded-lg border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="p-6">
+                    <div className="space-y-3">
+                      {resourcesDropdown.map((item) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="block group/item hover:bg-gray-50 p-3 rounded-md transition-colors"
+                        >
+                          <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
                             {item.name}
-                          </Link>
-                        ))}
+                          </div>
+                          <div className="text-gray-500 text-xs mt-1 leading-relaxed">
+                            {item.description}
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                    <div className="mt-6 pt-4 border-t border-gray-200">
+                      <div className="flex items-center justify-between">
+                        <a
+                          href="/contact-us"
+                          className="text-gray-600 hover:text-navy text-sm font-medium transition-colors"
+                        >
+                          Speak to our team
+                        </a>
+                        <a
+                          href="/online-private-education"
+                          className="bg-navy text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-navy-light transition-colors"
+                        >
+                          Book a private midwife session
+                        </a>
                       </div>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
 
               {/* Contact */}

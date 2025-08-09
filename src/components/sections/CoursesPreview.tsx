@@ -4,18 +4,19 @@ import { Clock, Users, Star } from 'lucide-react'
 export default function CoursesPreview() {
   const courses = [
     {
-      id: 'c-section-prep-course',
-      title: 'C-Section Prep Course',
-      description: 'Comprehensive preparation for your planned or emergency cesarean birth. Learn what to expect, how to prepare, and essential recovery tips.',
-      duration: '3 hours',
-      students: '2,500+',
+      id: 'infant-feeding-course-bundle',
+      title: 'Infant Feeding Course Bundle',
+      description: 'Complete feeding guidance for c-section mums. Master breastfeeding, bottle feeding, and combination feeding with expert midwife support.',
+      duration: '4+ hours',
+      students: '1,200+',
       rating: 4.9,
-      price: '£49',
+      price: '£79',
+      originalPrice: '£89',
       highlights: [
-        'Pre-surgery preparation',
-        'What happens during surgery',
-        'Recovery techniques',
-        'Partner support guide'
+        'Breastfeeding after c-section',
+        'Bottle feeding techniques',
+        'Expressing & combination feeding',
+        'Led by Midwife Zoe'
       ]
     },
     {
@@ -37,7 +38,7 @@ export default function CoursesPreview() {
   ]
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-navy mb-4">
@@ -105,7 +106,7 @@ export default function CoursesPreview() {
         <div className="text-center mt-12">
           <Link
             href="/courses"
-            className="inline-flex items-center text-navy font-semibold hover:text-navy-light transition-colors"
+            className="bg-navy text-white px-8 py-4 rounded-lg font-semibold hover:bg-navy-light transition-colors inline-flex items-center"
           >
             View All Courses
             <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

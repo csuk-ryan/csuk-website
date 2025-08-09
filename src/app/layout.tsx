@@ -33,6 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-GB">
+      <head>
+        <meta name="robots" content="noindex, nofollow" />
+      </head>
       <body className="antialiased">
         <Header />
         <main>{children}</main>

@@ -108,22 +108,6 @@ export default function ScarAnalyserPage() {
         </div>
       </section>
 
-      {/* Important Disclaimer */}
-      <section className="py-8 bg-amber-50 border-b border-amber-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start">
-            <AlertTriangle className="h-6 w-6 text-amber-600 mt-1 mr-3 flex-shrink-0" />
-            <div>
-              <h3 className="text-lg font-semibold text-amber-800 mb-2">Medical Disclaimer</h3>
-              <p className="text-amber-700">
-                <strong>This tool is for educational purposes only and does not replace professional medical advice.</strong> 
-                Always consult your healthcare provider, GP, or specialist for any concerns about your scar healing. 
-                If you notice signs of infection, unusual pain, or significant changes, seek immediate medical attention.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Main Analysis Tool */}
       <section className="py-16">
@@ -328,7 +312,7 @@ export default function ScarAnalyserPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-navy text-white">
+      <section className="py-16 bg-blue-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Need Expert Guidance?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
@@ -349,6 +333,18 @@ export default function ScarAnalyserPage() {
             >
               Explore Scar Care Courses
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Medical Disclaimer - Subtle */}
+      <section className="py-8 bg-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600 text-sm">
+              <strong>Medical Disclaimer:</strong> This tool is for educational purposes only and does not replace professional medical advice. 
+              Always consult your healthcare provider for concerns about your scar healing.
+            </p>
           </div>
         </div>
       </section>
