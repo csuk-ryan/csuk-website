@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, PlayCircle } from 'lucide-react'
 
 export default function Hero() {
@@ -24,7 +25,7 @@ export default function Hero() {
                 <ArrowRight className="ml-2" size={20} />
               </Link>
               <Link
-                href="/online-private-education"
+                href="/private-midwife"
                 className="border-2 border-navy text-navy px-8 py-4 rounded-lg font-semibold hover:bg-navy hover:text-white transition-colors inline-flex items-center justify-center"
               >
                 <PlayCircle className="mr-2" size={20} />
@@ -34,36 +35,15 @@ export default function Hero() {
           </div>
           
           <div className="relative">
-            <div className="bg-navy-light rounded-2xl p-8 text-white">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-3 h-3 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Expert-Led Education</h3>
-                    <p className="text-gray-300 text-sm">
-                      Learn from qualified professionals with years of experience in cesarean births
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-3 h-3 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Comprehensive Recovery</h3>
-                    <p className="text-gray-300 text-sm">
-                      Complete guidance for your physical and emotional recovery journey
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-3 h-3 bg-white rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 className="font-semibold mb-2">Supportive Community</h3>
-                    <p className="text-gray-300 text-sm">
-                      Connect with other mothers on similar journeys for support and encouragement
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="rounded-2xl overflow-hidden">
+              <Image
+                src="/images/home/home.webp"
+                alt="C-Section UK - Expert guidance for your cesarean birth journey"
+                width={600}
+                height={400}
+                className="w-full h-auto object-cover"
+                priority
+              />
             </div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Clock, Users, Star } from 'lucide-react'
 
 export default function CoursesPreview() {
@@ -12,6 +13,7 @@ export default function CoursesPreview() {
       rating: 4.9,
       price: '£79',
       originalPrice: '£89',
+      image: '/images/courses/feeding-bundle/feeding-course-bundle.webp',
       highlights: [
         'Breastfeeding after c-section',
         'Bottle feeding techniques',
@@ -28,6 +30,7 @@ export default function CoursesPreview() {
       rating: 4.9,
       price: '£89',
       originalPrice: '£120',
+      image: '/images/courses/csuk-bundle/bundle-square.webp',
       highlights: [
         'All prep course content',
         'Advanced recovery strategies',
@@ -52,53 +55,67 @@ export default function CoursesPreview() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {courses.map((course) => (
-            <div key={course.id} className="bg-neutral rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-2xl font-bold text-navy mb-2">{course.title}</h3>
-                  <div className="flex items-center space-x-4 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <Clock size={16} className="mr-1" />
-                      {course.duration}
-                    </div>
-                    <div className="flex items-center">
-                      <Users size={16} className="mr-1" />
-                      {course.students}
-                    </div>
-                    <div className="flex items-center">
-                      <Star size={16} className="mr-1 text-yellow-500" />
-                      {course.rating}
+            <div key={course.id} className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow">
+              {/* Course Image */}
+              <div className="aspect-video bg-gray-100 relative">
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="w-full h-full"
+                />
+              </div>
+              
+              {/* Course Content */}
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-navy mb-2">{course.title}</h3>
+                    <div className="flex items-center space-x-4 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <Clock size={16} className="mr-1" />
+                        {course.duration}
+                      </div>
+                      <div className="flex items-center">
+                        <Users size={16} className="mr-1" />
+                        {course.students}
+                      </div>
+                      <div className="flex items-center">
+                        <Star size={16} className="mr-1 text-yellow-500" />
+                        {course.rating}
+                      </div>
                     </div>
                   </div>
+                  <div className="text-right">
+                    {course.originalPrice && (
+                      <div className="text-sm text-gray-500 line-through">{course.originalPrice}</div>
+                    )}
+                    <div className="text-2xl font-bold text-navy">{course.price}</div>
+                  </div>
                 </div>
-                <div className="text-right">
-                  {course.originalPrice && (
-                    <div className="text-sm text-gray-500 line-through">{course.originalPrice}</div>
-                  )}
-                  <div className="text-2xl font-bold text-navy">{course.price}</div>
+
+                <p className="text-gray-600 mb-6">{course.description}</p>
+
+                <div className="mb-6">
+                  <h4 className="font-semibold text-navy mb-3">What you&apos;ll learn:</h4>
+                  <ul className="space-y-2">
+                    {course.highlights.map((highlight, index) => (
+                      <li key={index} className="flex items-start">
+                        <div className="w-2 h-2 bg-navy rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                <Link
+                  href={`/courses/${course.id}`}
+                  className="block w-full bg-navy text-white text-center py-3 rounded-lg font-semibold hover:bg-navy-light transition-colors"
+                >
+                  Learn More & Enroll
+                </Link>
               </div>
-
-              <p className="text-gray-600 mb-6">{course.description}</p>
-
-              <div className="mb-6">
-                <h4 className="font-semibold text-navy mb-3">What you&apos;ll learn:</h4>
-                <ul className="space-y-2">
-                  {course.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start">
-                      <div className="w-2 h-2 bg-navy rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-600">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <Link
-                href={`/courses/${course.id}`}
-                className="block w-full bg-navy text-white text-center py-3 rounded-lg font-semibold hover:bg-navy-light transition-colors"
-              >
-                Learn More & Enroll
-              </Link>
             </div>
           ))}
         </div>

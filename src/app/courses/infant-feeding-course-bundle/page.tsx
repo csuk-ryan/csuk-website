@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect } from 'react'
 import { CheckCircle, Play, Clock, Star, Heart, Baby, Shield } from 'lucide-react'
 
@@ -10,18 +11,21 @@ const courses = [
     title: 'Breastfeeding for C-Section Mums',
     duration: '45 minutes',
     description: 'Navigate the unique challenges of breastfeeding after a c-section',
+    image: '/images/courses/breastfeeding/breastfeeding.webp',
     topics: ['Comfortable positioning after surgery', 'Hormonal support post c-section', 'Early feeding establishment', 'Managing pain while feeding']
   },
   {
     title: 'Bottle Feeding for C-Section Mums', 
     duration: '40 minutes',
     description: 'Safe and effective bottle feeding techniques for c-section mothers',
+    image: '/images/courses/bottlefeeding/bottle-course.webp',
     topics: ['Formula preparation and safety', 'Feeding positions for recovery', 'Establishing feeding routines', 'Partner involvement in feeding']
   },
   {
     title: 'Expressing & Combination Feeding',
     duration: '35 minutes',
     description: 'Master expressing and combination feeding for flexibility and support',
+    image: '/images/courses/expression/combi-course..webp',
     topics: ['Expressing techniques and timing', 'Combining breast and bottle', 'Maintaining milk supply', 'Managing mixed feeding schedules']
   }
 ]
@@ -260,8 +264,8 @@ export default function InfantFeedingCourseBundlePage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-pink-50 via-white to-blue-50 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-pink-50 via-white to-blue-50 min-h-screen flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center bg-pink-100 text-pink-800 px-3 py-1 rounded-full text-sm font-medium mb-6">
@@ -274,9 +278,12 @@ export default function InfantFeedingCourseBundlePage() {
                 Covers all feeding options with specialist guidance for your unique recovery needs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 items-start">
-                <button className="bg-pink-600 text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-pink-700 transition-colors">
+                <a 
+                  href="https://courses.csectionuk.com/purchase?product_id=4734008&user_src=embed_buy_button&embed=true"
+                  className="bg-pink-600 text-white px-8 py-4 rounded-md font-semibold text-lg hover:bg-pink-700 transition-colors inline-block text-center"
+                >
                   Get Bundle for £79
-                </button>
+                </a>
                 <div className="text-sm text-gray-600">
                   <div className="font-semibold text-gray-900">Save £10</div>
                   <div>Individual courses: £29.99 each</div>
@@ -299,40 +306,15 @@ export default function InfantFeedingCourseBundlePage() {
               </div>
             </div>
             
-            <div className="bg-white rounded-lg shadow-lg p-8 border border-gray-100">
-              <div className="text-center mb-6">
-                <div className="text-4xl font-bold text-navy mb-2">£79</div>
-                <div className="text-lg text-gray-600">Complete Bundle</div>
-                <div className="text-sm line-through text-gray-400 mt-1">£89.97 individual price</div>
-                <div className="text-sm text-green-600 font-semibold">Save £10</div>
-              </div>
-              
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0" />
-                  3 comprehensive feeding courses
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0" />
-                  Specialist c-section guidance
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0" />
-                  1-year access to all content
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0" />
-                  Mobile & desktop compatible
-                </div>
-                <div className="flex items-center">
-                  <CheckCircle className="h-4 w-4 mr-2 text-green-600 flex-shrink-0" />
-                  Rewatch capabilities
-                </div>
-              </div>
-              
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <div className="text-xs text-blue-800 font-medium mb-1">SPONSORED BY</div>
-                <div className="text-lg font-bold text-blue-900">MAM</div>
+            <div className="flex justify-center">
+              <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                <Image
+                  src="/images/courses/feeding-bundle/feeding-course-bundle.webp"
+                  alt="Infant Feeding Course Bundle"
+                  width={500}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
               </div>
             </div>
           </div>
@@ -349,25 +331,39 @@ export default function InfantFeedingCourseBundlePage() {
 
           <div className="grid lg:grid-cols-3 gap-8">
             {courses.map((course, index) => (
-              <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-sm border border-gray-100 p-8 hover:shadow-md transition-shadow">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
-                    <Baby className="h-5 w-5 text-pink-600" />
-                  </div>
-                  <div className="text-sm text-gray-500">{course.duration}</div>
+              <div key={index} className="bg-gradient-to-br from-white to-gray-50 rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+                {/* Course Image */}
+                <div className="aspect-video bg-gray-100 relative">
+                  <Image
+                    src={course.image}
+                    alt={course.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    className="w-full h-full"
+                  />
                 </div>
                 
-                <h3 className="text-xl font-semibold text-navy mb-3">{course.title}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{course.description}</p>
-                
-                <div className="space-y-2">
-                  <div className="text-sm font-medium text-gray-900 mb-3">What You'll Learn:</div>
-                  {course.topics.map((topic, topicIndex) => (
-                    <div key={topicIndex} className="flex items-start">
-                      <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                      <span className="text-gray-700 text-sm leading-relaxed">{topic}</span>
+                {/* Course Content */}
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center">
+                      <Baby className="h-5 w-5 text-pink-600" />
                     </div>
-                  ))}
+                    <div className="text-sm text-gray-500">{course.duration}</div>
+                  </div>
+                  
+                  <h3 className="text-xl font-semibold text-navy mb-3">{course.title}</h3>
+                  <p className="text-gray-600 leading-relaxed mb-6">{course.description}</p>
+                  
+                  <div className="space-y-2">
+                    <div className="text-sm font-medium text-gray-900 mb-3">What You'll Learn:</div>
+                    {course.topics.map((topic, topicIndex) => (
+                      <div key={topicIndex} className="flex items-start">
+                        <div className="w-1.5 h-1.5 bg-pink-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-700 text-sm leading-relaxed">{topic}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -473,24 +469,6 @@ export default function InfantFeedingCourseBundlePage() {
         </div>
       </section>
 
-      {/* Related Course */}
-      <section className="py-16 bg-navy text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl font-bold mb-4">Complete Your C-Section Education</h2>
-            <p className="text-lg text-blue-100 mb-6">
-              Pair this feeding bundle with our comprehensive C-Section Course Bundle 
-              for complete birth and recovery preparation.
-            </p>
-            <Link 
-              href="/courses/c-section-course-bundle"
-              className="inline-block bg-white text-navy px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
-            >
-              View C-Section Course Bundle
-            </Link>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-pink-600 to-pink-700 text-white">

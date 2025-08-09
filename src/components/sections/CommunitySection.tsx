@@ -150,22 +150,6 @@ export default function CommunitySection() {
           </div>
         </div>
 
-        {/* Community Testimonial */}
-        <div className="bg-white rounded-lg p-8 shadow-sm text-center">
-          <div className="max-w-2xl mx-auto">
-            <div className="flex justify-center mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-6 w-6 text-yellow-400 fill-current" />
-              ))}
-            </div>
-            <blockquote className="text-xl text-gray-700 italic mb-6">
-              "Finding the CSUK community was life-changing. I went from feeling scared and alone about my c-section to feeling supported and empowered. The other mums here just 'get it' in a way that nobody else can."
-            </blockquote>
-            <div className="font-semibold text-navy">
-              - Sophie K., Community Member since 2023
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   )

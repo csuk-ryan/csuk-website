@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { Calendar, Video, Clock, CheckCircle, Shield, Heart, User } from 'lucide-react'
 import CalendarScheduler from '@/components/booking/CalendarScheduler'
 
@@ -48,26 +49,39 @@ export default function OnlinePrivateEducationPage() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-navy to-navy-light text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">Private Midwife Sessions</h1>
-            <p className="text-xl leading-relaxed mb-8">
-              One-to-one C-section education with a practicing Midwife via Zoom. 
-              Get personalized support tailored to your individual needs and circumstances.
-            </p>
-            <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 inline-block">
-              <div className="text-3xl font-bold mb-2">£49.99</div>
-              <div className="text-lg">Per 1-hour session</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl font-bold mb-6">Private Midwife Sessions</h1>
+              <p className="text-xl leading-relaxed mb-8">
+                One-to-one C-section education with a practicing Midwife via Zoom. 
+                Get personalized support tailored to your individual needs and circumstances.
+              </p>
+              <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 inline-block">
+                <div className="text-3xl font-bold mb-2">£49.99</div>
+                <div className="text-lg">Per 1-hour session</div>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  onClick={() => setShowScheduler(true)}
+                  className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  Book Your Session
+                </button>
+                <button className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors">
+                  Select a Midwife
+                </button>
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => setShowScheduler(true)}
-                className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
-              >
-                Book Your Session
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors">
-                Select a Midwife
-              </button>
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/private-education/vic2.webp"
+                  alt="Professional Midwife Consultation"
+                  width={500}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -100,7 +114,7 @@ export default function OnlinePrivateEducationPage() {
       {/* What's Included */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-4xl mx-auto">
             <div>
               <h2 className="text-3xl font-bold text-navy mb-6">What's Included</h2>
               <ul className="space-y-4 mb-8">
@@ -125,36 +139,6 @@ export default function OnlinePrivateEducationPage() {
                   className="rounded-lg w-full h-48 object-cover"
                 />
               </div>
-            </div>
-            <div className="bg-white rounded-lg shadow-sm p-8">
-              <div className="text-center mb-6">
-                <Video className="h-16 w-16 text-navy mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-navy mb-2">1-Hour Private Session</h3>
-                <div className="text-3xl font-bold text-navy mb-4">£49.99</div>
-              </div>
-              <div className="space-y-3 text-sm text-gray-700 mb-6">
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2" />
-                  60 minutes via Zoom
-                </div>
-                <div className="flex items-center">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  Flexible scheduling available
-                </div>
-                <div className="flex items-center">
-                  <User className="h-4 w-4 mr-2" />
-                  NMC registered midwives
-                </div>
-              </div>
-              <button 
-                onClick={() => setShowScheduler(true)}
-                className="w-full bg-navy text-white py-3 rounded-md font-semibold hover:bg-navy-light transition-colors mb-3"
-              >
-                Book Your Session
-              </button>
-              <button className="w-full border border-navy text-navy py-3 rounded-md font-semibold hover:bg-gray-50 transition-colors">
-                View Available Midwives
-              </button>
             </div>
           </div>
         </div>

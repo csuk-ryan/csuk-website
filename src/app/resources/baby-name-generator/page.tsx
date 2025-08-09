@@ -243,7 +243,7 @@ export default function BabyNameGeneratorPage() {
       <section className="py-16 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-lg p-8 shadow-sm">
-            <h2 className="text-2xl font-bold text-navy mb-6 text-center">Customize Your Search</h2>
+            <h2 className="text-2xl font-bold text-navy mb-6 text-center">Customise Your Search</h2>
             
             <div className="space-y-6">
               {/* Gender Selection */}
@@ -404,19 +404,16 @@ export default function BabyNameGeneratorPage() {
                 <div key={index} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow">
                   <div className="flex justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-bold text-navy">{name}</h3>
+                      <h3 className="text-xl font-bold text-navy">
+                        {name}
+                        {customMiddleName.trim() && ` ${customMiddleName.trim()}`}
+                        {customLastName.trim() && ` ${customLastName.trim()}`}
+                      </h3>
                       {nameMeanings[name] && (
-                        <p className="text-sm text-gray-600 italic">"{nameMeanings[name]}"</p>
+                        <p className="text-sm text-gray-600 italic mt-1">"{nameMeanings[name]}"</p>
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <button
-                        onClick={() => generateFullNamePreview(name)}
-                        className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200 transition-colors"
-                        title="Preview full name"
-                      >
-                        <Eye size={16} />
-                      </button>
                       <button
                         onClick={() => addToFavorites(name)}
                         className={`p-2 rounded-full transition-colors ${

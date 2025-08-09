@@ -1,8 +1,9 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
-import { Menu, X, ChevronDown, User } from 'lucide-react'
+import { Menu, X, ChevronDown, User, ArrowRight, Package, Baby } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,32 +11,57 @@ export default function Header() {
 
   const coursesDropdown = [
     {
-      category: 'Featured Courses',
+      category: 'C-Section Courses',
       items: [
-        { name: 'C-Section Prep Course', href: '/courses/c-section-prep-course', description: 'Complete preparation for your cesarean birth' },
-        { name: 'Complete C-Section Bundle', href: '/courses/c-section-course-bundle', description: 'Our most comprehensive c-section package' },
-        { name: 'Infant Feeding Bundle', href: '/courses/infant-feeding-course-bundle', description: 'Expert feeding guidance with Midwife Zoe' },
+        { name: 'Prep Course', href: '/courses/c-section-prep-course' },
+        { name: 'Birth Course', href: '/courses/birth-course' },
+        { name: 'Recovery Course', href: '/courses/recovery-course' },
       ]
     },
     {
-      category: 'Individual Courses',
+      category: 'Feeding Courses',
       items: [
-        { name: 'Breastfeeding', href: '/courses/breastfeeding', description: 'Master breastfeeding with confidence' },
-        { name: 'Bottle Feeding', href: '/courses/bottle-feeding', description: 'Safe and effective bottle feeding' },
-        { name: 'Expressing & Combo', href: '/courses/expressing-combo-feeding', description: 'Flexible feeding options' },
+        { name: 'Breastfeeding', href: '/courses/breastfeeding' },
+        { name: 'Bottle Feeding', href: '/courses/bottle-feeding' },
+        { name: 'Expressing & Combo', href: '/courses/expressing-combo-feeding' },
       ]
     }
   ]
 
+  const bundleCards = [
+    { 
+      name: 'Complete C-Section Bundle', 
+      href: '/courses/c-section-course-bundle', 
+      description: 'Our most comprehensive c-section package',
+      icon: <Package className="h-6 w-6" />
+    },
+    { 
+      name: 'Infant Feeding Bundle', 
+      href: '/courses/infant-feeding-course-bundle', 
+      description: 'Expert feeding guidance with Midwife Zoe',
+      icon: <Baby className="h-6 w-6" />
+    },
+  ]
+
   const resourcesDropdown = [
-    { name: 'Blog', href: '/blog', description: 'Latest c-section insights and tips' },
-    { name: 'Birth Stories', href: '/positive-birth-stories', description: 'Inspiring positive c-section experiences' },
-    { name: 'Free C-Section Audio', href: '/resources/free-c-section-audio', description: 'Relaxation & preparation audio content' },
-    { name: 'Scar Analyser', href: '/resources/scar-analyser', description: 'Free AI-powered scar assessment tool' },
-    { name: 'Recovery Timeline', href: '/resources/recovery-timeline', description: 'Track your healing journey step-by-step' },
-    { name: 'Affirmation Generator', href: '/resources/affirmation-generator', description: 'Positive self-talk for your c-section' },
-    { name: 'Baby Name Generator', href: '/resources/baby-name-generator', description: 'Find the perfect name for your little one' },
-    { name: 'Hospital Bag Checklist', href: '/resources/hospital-bag-checklist', description: 'Personalized packing list for your c-section birth' },
+    {
+      category: 'Reading',
+      items: [
+        { name: 'Blog', href: '/blog', description: 'Latest c-section insights and tips' },
+        { name: 'Birth Stories', href: '/positive-birth-stories', description: 'Inspiring positive c-section experiences' },
+      ]
+    },
+    {
+      category: 'Tools',
+      items: [
+        { name: 'Free C-Section Audio', href: '/resources/free-c-section-audio', description: 'Relaxation & preparation audio content' },
+        { name: 'Scar Analyser', href: '/resources/scar-analyser', description: 'Free AI-powered scar assessment tool' },
+        { name: 'Recovery Timeline', href: '/resources/recovery-timeline', description: 'Track your healing journey step-by-step' },
+        { name: 'Affirmation Generator', href: '/resources/affirmation-generator', description: 'Positive self-talk for your c-section' },
+        { name: 'Baby Name Generator', href: '/resources/baby-name-generator', description: 'Find the perfect name for your little one' },
+        { name: 'Hospital Bag Checklist', href: '/resources/hospital-bag-checklist', description: 'Personalized packing list for your c-section birth' },
+      ]
+    }
   ]
 
   const navigation = [
@@ -51,8 +77,14 @@ export default function Header() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <div className="w-10 h-10 bg-navy rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-lg">C</span>
+              <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
+                <Image
+                  src="/images/logos/favicon.webp"
+                  alt="C-Section UK Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="ml-2 text-xl font-bold text-navy">C-Section UK</span>
             </Link>
@@ -92,22 +124,54 @@ export default function Header() {
                                 <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
                                   {item.name}
                                 </div>
-                                <div className="text-gray-500 text-xs mt-1 leading-relaxed">
-                                  {item.description}
-                                </div>
+                                {item.description && (
+                                  <div className="text-gray-500 text-xs mt-1 leading-relaxed">
+                                    {item.description}
+                                  </div>
+                                )}
                               </Link>
                             ))}
                           </div>
                         </div>
                       ))}
                     </div>
+                    
+                    {/* Bundle Cards */}
+                    <div className="mt-6 pt-4 border-t border-gray-200">
+                      <h4 className="font-semibold text-navy text-sm mb-4 uppercase tracking-wide">Bundles</h4>
+                      <div className="grid grid-cols-2 gap-3">
+                        {bundleCards.map((bundle) => (
+                          <Link
+                            key={bundle.name}
+                            href={bundle.href}
+                            className="bg-gray-50 hover:bg-gray-100 p-4 rounded-lg transition-colors group"
+                          >
+                            <div className="flex items-center space-x-3">
+                              <div className="text-navy group-hover:text-blue-600 transition-colors">
+                                {bundle.icon}
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <div className="text-navy font-medium text-xs leading-tight group-hover:text-blue-600 transition-colors">
+                                  {bundle.name.replace(' Bundle', '')}
+                                </div>
+                                <div className="text-gray-500 text-xs mt-1 leading-tight">
+                                  {bundle.description}
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
                     <div className="mt-6 pt-4 border-t border-gray-200">
                       <div className="flex items-center justify-between">
                         <a
                           href="/contact-us"
-                          className="text-gray-600 hover:text-navy text-sm font-medium transition-colors"
+                          className="text-gray-600 hover:text-navy text-sm font-medium transition-colors inline-flex items-center"
                         >
                           Speak to our team
+                          <ArrowRight size={14} className="ml-1" />
                         </a>
                         <a
                           href="/private-midwife"
@@ -143,31 +207,43 @@ export default function Header() {
                   Resources
                   <ChevronDown size={16} className="ml-1" />
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-80 bg-white shadow-xl rounded-lg border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute top-full left-0 mt-2 w-[480px] bg-white shadow-xl rounded-lg border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="p-6">
-                    <div className="space-y-3">
-                      {resourcesDropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="block group/item hover:bg-gray-50 p-3 rounded-md transition-colors"
-                        >
-                          <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
-                            {item.name}
+                    <div className="grid grid-cols-2 gap-6">
+                      {resourcesDropdown.map((category) => (
+                        <div key={category.category}>
+                          <h4 className="font-semibold text-navy text-sm mb-4 uppercase tracking-wide">
+                            {category.category}
+                          </h4>
+                          <div className="space-y-3">
+                            {category.items.map((item) => (
+                              <Link
+                                key={item.name}
+                                href={item.href}
+                                className="block group/item hover:bg-gray-50 p-2 rounded-md transition-colors"
+                              >
+                                <div className="text-navy font-medium text-sm group-hover/item:text-blue-600 transition-colors">
+                                  {item.name}
+                                </div>
+                                {item.description && (
+                                  <div className="text-gray-500 text-xs mt-1 leading-relaxed">
+                                    {item.description}
+                                  </div>
+                                )}
+                              </Link>
+                            ))}
                           </div>
-                          <div className="text-gray-500 text-xs mt-1 leading-relaxed">
-                            {item.description}
-                          </div>
-                        </Link>
+                        </div>
                       ))}
                     </div>
                     <div className="mt-6 pt-4 border-t border-gray-200">
                       <div className="flex items-center justify-between">
                         <a
                           href="/contact-us"
-                          className="text-gray-600 hover:text-navy text-sm font-medium transition-colors"
+                          className="text-gray-600 hover:text-navy text-sm font-medium transition-colors inline-flex items-center"
                         >
                           Speak to our team
+                          <ArrowRight size={14} className="ml-1" />
                         </a>
                         <a
                           href="/private-midwife"
@@ -261,15 +337,20 @@ export default function Header() {
               {/* Mobile Resources Section */}
               <div className="px-3 py-2">
                 <h3 className="text-navy font-semibold text-base mb-2">Resources</h3>
-                {resourcesDropdown.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-700 hover:text-navy block px-4 py-1 text-sm"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                {resourcesDropdown.map((category) => (
+                  <div key={category.category} className="mb-3">
+                    <h4 className="text-navy font-medium text-sm mb-1 pl-2">{category.category}</h4>
+                    {category.items.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="text-gray-700 hover:text-navy block px-4 py-1 text-sm"
+                        onClick={() => setIsMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 ))}
               </div>
 

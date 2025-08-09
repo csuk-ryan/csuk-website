@@ -92,17 +92,20 @@ export default function About() {
             <div>
               <h1 className="text-5xl font-bold mb-6">About CSUK</h1>
               <p className="text-xl leading-relaxed">
-                We're on a mission to support, care and cater to the ever-growing group of c-section parents 
+                We&apos;re on a mission to support, care and cater to the ever-growing group of c-section parents 
                 who find themselves searching for ways to have a more positive c-section birth and recovery.
               </p>
             </div>
             <div className="flex justify-center">
-              <div className="w-80 h-80 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
-                <div className="text-center">
-                  <Users className="h-24 w-24 mx-auto mb-4 opacity-80" />
-                  <div className="text-lg font-medium opacity-90">Our Team</div>
-                  <div className="text-sm opacity-75">Expert Midwives & Specialists</div>
-                </div>
+              <div className="w-96 h-80 relative rounded-xl overflow-hidden shadow-lg border-4 border-white/20">
+                <Image
+                  src="/images/about/about.webp"
+                  alt="About CSUK Hero"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  priority
+                  className="rounded-xl"
+                />
               </div>
             </div>
           </div>
@@ -114,12 +117,26 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-navy mb-6">Our Mission</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg text-gray-700 leading-relaxed mb-8">
               c-sectionUK provides expert-led digital courses, online support sessions, and professional 
               c-section knowledge to empower parents with confidence, preparation, and community support. 
               We believe every c-section parent deserves access to evidence-based education and positive 
               birth experiences.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/courses" 
+                className="bg-navy text-white px-8 py-3 rounded-md font-semibold hover:bg-navy-light transition-colors inline-block"
+              >
+                View Course
+              </a>
+              <a 
+                href="/press-and-media" 
+                className="border-2 border-navy text-navy px-8 py-3 rounded-md font-semibold hover:bg-navy hover:text-white transition-colors inline-block"
+              >
+                Press & Media
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -271,7 +288,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-navy text-white">
+      <section className="py-16 bg-gradient-to-br from-navy via-navy to-blue-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Start Your C-Section Journey?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">

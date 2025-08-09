@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram } from 'lucide-react'
 
 export default function Footer() {
@@ -8,8 +9,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center mb-4">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                <span className="text-navy font-bold text-lg">C</span>
+              <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center">
+                <Image
+                  src="/images/logos/favicon.webp"
+                  alt="C-Section UK Logo"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="ml-2 text-xl font-bold">C-Section UK</span>
             </div>
@@ -110,7 +117,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">
-              Legal
+              Policies
             </h3>
             <ul className="space-y-2">
               <li>
