@@ -1,12 +1,15 @@
-import { Star, Quote } from 'lucide-react'
+import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState } from 'react'
 
 export default function TestimonialsSection() {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0)
+
   const testimonials = [
     {
       name: 'Sarah M.',
       location: 'London, UK',
       rating: 5,
-      text: "The C-Section prep course completely transformed my experience. I went from feeling anxious and uninformed to confident and prepared. The recovery section was invaluable - I knew exactly what to expect and how to take care of myself. Highly recommend to any mum facing a cesarean birth!",
+      text: "The C-Section prep course completely transformed my experience.",
       course: 'C-Section Prep Course',
       timeAgo: '2 weeks ago'
     },
@@ -14,7 +17,7 @@ export default function TestimonialsSection() {
       name: 'Emma L.',
       location: 'Manchester, UK', 
       rating: 5,
-      text: "As a first-time mum, I was terrified about my planned c-section. This course gave me so much confidence and practical knowledge. The partner guide was amazing too - my husband felt much more prepared to support me. The best investment I made during my pregnancy!",
+      text: "This course gave me so much confidence and practical knowledge.",
       course: 'Complete C-Section Bundle',
       timeAgo: '1 month ago'
     },
@@ -22,7 +25,7 @@ export default function TestimonialsSection() {
       name: 'Jessica K.',
       location: 'Birmingham, UK',
       rating: 5, 
-      text: "I had an emergency c-section with my first baby and felt so unprepared. When planning my second, I found CSUK and it was a game-changer. The recovery tips alone were worth every penny. I felt so much more in control this time around.",
+      text: "CSUK was a game-changer - I felt so much more in control.",
       course: 'C-Section Prep Course',
       timeAgo: '3 weeks ago'
     },
@@ -30,7 +33,7 @@ export default function TestimonialsSection() {
       name: 'Rachel P.',
       location: 'Edinburgh, UK',
       rating: 5,
-      text: "The private education session with Midwife Vic was incredible. She answered all my specific questions and gave me personalized advice for my situation. Combined with the online course, I felt completely prepared for my c-section. Thank you CSUK!",
+      text: "The private session with Midwife Vic was incredible.",
       course: 'Private Education + Course',
       timeAgo: '1 week ago'
     },
@@ -38,7 +41,7 @@ export default function TestimonialsSection() {
       name: 'Amy S.',
       location: 'Cardiff, UK',
       rating: 5,
-      text: "I can't recommend CSUK enough! The scar care guidance has been amazing - my scar is healing beautifully thanks to their advice. The community aspect is so supportive too. It's wonderful to connect with other c-section mums who understand the journey.",
+      text: "I can't recommend CSUK enough - the scar care guidance was amazing.",
       course: 'Complete C-Section Bundle',
       timeAgo: '2 months ago'
     },
@@ -46,11 +49,19 @@ export default function TestimonialsSection() {
       name: 'Kate B.',
       location: 'Glasgow, UK',
       rating: 5,
-      text: "Having a planned c-section felt overwhelming until I found this course. The step-by-step breakdown of what happens during surgery really helped calm my nerves. My birth was such a positive experience, and I credit much of that to being so well-prepared.",
+      text: "My birth was positive thanks to being so well-prepared.",
       course: 'C-Section Prep Course',
       timeAgo: '1 month ago'
     }
   ]
+
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+  }
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+  }
 
   return (
     <section className="py-20 bg-white">
@@ -80,51 +91,81 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow relative">
-              {/* Google-style header */}
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-navy rounded-full flex items-center justify-center">
-                    <span className="text-white font-semibold text-sm">
-                      {testimonial.name.charAt(0)}
+        {/* Single Testimonial Display */}
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white border border-gray-200 rounded-lg p-8 shadow-sm relative">
+            {/* Navigation Buttons */}
+            <button 
+              onClick={prevTestimonial}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center hover:bg-navy-light transition-colors"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            
+            <button 
+              onClick={nextTestimonial}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-navy text-white rounded-full flex items-center justify-center hover:bg-navy-light transition-colors"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Current Testimonial */}
+            <div className="mx-12">
+              {/* Header */}
+              <div className="flex items-center justify-center mb-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-navy rounded-full flex items-center justify-center">
+                    <span className="text-white font-semibold">
+                      {testimonials[currentTestimonial].name.charAt(0)}
                     </span>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.location}</p>
+                  <div className="text-center">
+                    <h4 className="font-semibold text-gray-900">{testimonials[currentTestimonial].name}</h4>
+                    <p className="text-sm text-gray-600">{testimonials[currentTestimonial].location}</p>
                   </div>
                 </div>
-                <Quote className="h-6 w-6 text-gray-300" />
+                <Quote className="h-8 w-8 text-gray-300 ml-6" />
               </div>
 
               {/* Rating */}
-              <div className="flex items-center mb-3">
-                <div className="flex mr-2">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={14} className="text-yellow-400 fill-current" />
+              <div className="flex items-center justify-center mb-4">
+                <div className="flex mr-3">
+                  {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                    <Star key={i} size={20} className="text-yellow-400 fill-current" />
                   ))}
                 </div>
-                <span className="text-sm text-gray-600">{testimonial.timeAgo}</span>
+                <span className="text-sm text-gray-600">{testimonials[currentTestimonial].timeAgo}</span>
               </div>
 
               {/* Review text */}
-              <p className="text-gray-700 leading-relaxed mb-4 text-sm">
-                "{testimonial.text}"
+              <p className="text-gray-700 leading-relaxed mb-6 text-lg text-center">
+                "{testimonials[currentTestimonial].text}"
               </p>
 
-              {/* Course tag */}
-              <div className="flex items-center justify-between">
-                <span className="inline-block bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">
-                  {testimonial.course}
+              {/* Course tag and verification */}
+              <div className="flex items-center justify-center space-x-4">
+                <span className="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">
+                  {testimonials[currentTestimonial].course}
                 </span>
-                <div className="flex items-center text-xs text-gray-500">
+                <div className="flex items-center text-sm text-gray-500">
                   <span>Verified purchase</span>
                 </div>
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* Dots Navigation */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentTestimonial(index)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  index === currentTestimonial ? 'bg-navy' : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-12">

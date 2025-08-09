@@ -93,7 +93,7 @@ export default function OnlinePrivateEducationPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-navy mb-6">What's Included</h2>
-              <ul className="space-y-4">
+              <ul className="space-y-4 mb-8">
                 {benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start">
                     <CheckCircle className="h-6 w-6 text-green-600 mr-3 mt-1 flex-shrink-0" />
@@ -101,6 +101,20 @@ export default function OnlinePrivateEducationPage() {
                   </li>
                 ))}
               </ul>
+              
+              {/* Images */}
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="/images/private-education/vic1.webp" 
+                  alt="Midwife Vic during private consultation" 
+                  className="rounded-lg w-full h-48 object-cover"
+                />
+                <img 
+                  src="/images/private-education/vic2.webp" 
+                  alt="One-to-one midwife session" 
+                  className="rounded-lg w-full h-48 object-cover"
+                />
+              </div>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-8">
               <div className="text-center mb-6">
@@ -191,7 +205,7 @@ export default function OnlinePrivateEducationPage() {
             </div>
             <div className="bg-white rounded-lg p-6 shadow-sm text-center">
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-purple-600" />
+                <User className="h-8 w-8 text-purple-600" />
               </div>
               <h3 className="text-lg font-semibold text-navy mb-3">Professional Guidance</h3>
               <p className="text-gray-700 text-sm">Parents wanting professional guidance and reassurance throughout their journey</p>

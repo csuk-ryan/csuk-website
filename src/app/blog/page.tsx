@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Calendar, Clock, ArrowRight } from 'lucide-react'
+import { Calendar, Clock, ArrowRight, Search } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'C-Section Blog | Expert Tips & Advice | CSUK',
@@ -53,6 +53,18 @@ export default function BlogPage() {
               Expert articles, tips, and advice to support you through your C-section journey. 
               Written by qualified healthcare professionals and experienced mothers.
             </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-xl mx-auto">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  className="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-lg text-gray-800 focus:border-navy focus:outline-none text-lg"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -116,7 +128,7 @@ export default function BlogPage() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="px-4 py-3 rounded-lg text-navy flex-1"
+              className="px-4 py-3 rounded-lg text-navy flex-1 border-2 border-white bg-white"
             />
             <button className="bg-white text-navy px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Subscribe

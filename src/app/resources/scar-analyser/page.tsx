@@ -42,42 +42,53 @@ export default function ScarAnalyserPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false)
   const [analysisResult, setAnalysisResult] = useState<any>(null)
   const [hasAcceptedTerms, setHasAcceptedTerms] = useState(false)
+  const [userDetails, setUserDetails] = useState({ name: '', email: '', marketing: false })
+  const [loadingStage, setLoadingStage] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]
-    if (file && file.type.startsWith('image/')) {
-      setSelectedFile(file)
-      const url = URL.createObjectURL(file)
-      setPreviewUrl(url)
-      setAnalysisResult(null)
-    }
+  const handleFileSelect = () => {
+    // Simulate using the example scar image
+    setSelectedFile(new File([''], 'scarexample.webp'))
+    setPreviewUrl('/images/scar-analytics/scarexample.webp')
+    setAnalysisResult(null)
   }
 
   const handleAnalyze = async () => {
-    if (!selectedFile || !hasAcceptedTerms) return
+    if (!selectedFile || !hasAcceptedTerms || !userDetails.name || !userDetails.email) return
 
     setIsAnalyzing(true)
     
-    // Simulate analysis process
-    setTimeout(() => {
-      // Mock analysis result
-      const mockResult = {
-        scarType: scarTypes[1], // Normal Healing
-        confidence: 85,
-        recommendations: [
-          'Continue with gentle scar massage using a quality scar cream',
-          'Protect from sun exposure with SPF 30+ sunscreen',
-          'Monitor for any changes in texture, color, or sensation',
-          'Consider silicone gel sheets if scar becomes raised'
-        ],
-        timeframe: '6-12 months post-surgery',
-        followUp: 'Consider booking a private consultation if you have concerns'
-      }
-      
-      setAnalysisResult(mockResult)
-      setIsAnalyzing(false)
-    }, 3000)
+    // Simulate analysis stages
+    const stages = [
+      'Analysing your image...',
+      'Reviewing our database...',
+      'Comparing healing patterns...',
+      'Generating recommendations...',
+      'Preparing your results...'
+    ]
+    
+    for (let i = 0; i < stages.length; i++) {
+      setLoadingStage(stages[i])
+      await new Promise(resolve => setTimeout(resolve, 1000))
+    }
+    
+    // Mock analysis result
+    const mockResult = {
+      scarType: scarTypes[1], // Normal Healing
+      confidence: 85,
+      recommendations: [
+        'Continue with gentle scar massage using a quality scar cream',
+        'Protect from sun exposure with SPF 30+ sunscreen',
+        'Monitor for any changes in texture, color, or sensation',
+        'Consider silicone gel sheets if scar becomes raised'
+      ],
+      timeframe: '6-12 months post-surgery',
+      followUp: 'Consider booking a private consultation if you have concerns'
+    }
+    
+    setAnalysisResult(mockResult)
+    setIsAnalyzing(false)
+    setLoadingStage('')
   }
 
   const resetAnalysis = () => {
@@ -127,18 +138,11 @@ export default function ScarAnalyserPage() {
                         Drag and drop your photo here, or click to browse
                       </p>
                       <button
-                        onClick={() => fileInputRef.current?.click()}
+                        onClick={handleFileSelect}
                         className="bg-navy text-white px-6 py-3 rounded-md font-semibold hover:bg-navy-light transition-colors"
                       >
-                        Choose Photo
+                        Use Example Photo
                       </button>
-                      <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileSelect}
-                        className="hidden"
-                      />
                     </div>
                   </div>
                 ) : (
@@ -157,8 +161,56 @@ export default function ScarAnalyserPage() {
                       </button>
                     </div>
                     
-                    {/* Terms and Conditions */}
-                    <div className="bg-white rounded-lg p-6 border border-gray-200">
+                    {/* User Details Form */}
+                    <div className="bg-white rounded-lg p-6 border border-gray-200 space-y-4">
+                      <h3 className="font-semibold text-navy mb-4">Your Details (Required for Results)</h3>
+                      
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                            Full Name *
+                          </label>
+                          <input
+                            type="text"
+                            id="name"
+                            value={userDetails.name}
+                            onChange={(e) => setUserDetails({...userDetails, name: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:border-navy"
+                            placeholder="Your full name"
+                          />
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                            Email Address *
+                          </label>
+                          <input
+                            type="email"
+                            id="email"
+                            value={userDetails.email}
+                            onChange={(e) => setUserDetails({...userDetails, email: e.target.value})}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-navy focus:border-navy"
+                            placeholder="your.email@example.com"
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Marketing Consent */}
+                      <div className="flex items-start">
+                        <input
+                          type="checkbox"
+                          id="marketing"
+                          checked={userDetails.marketing}
+                          onChange={(e) => setUserDetails({...userDetails, marketing: e.target.checked})}
+                          className="mt-1 mr-3"
+                        />
+                        <label htmlFor="marketing" className="text-sm text-gray-700">
+                          I would like to receive helpful c-section tips, resources, and course updates via email. 
+                          You can unsubscribe at any time.
+                        </label>
+                      </div>
+                      
+                      {/* Terms */}
                       <div className="flex items-start">
                         <input
                           type="checkbox"
@@ -169,18 +221,17 @@ export default function ScarAnalyserPage() {
                         />
                         <label htmlFor="terms" className="text-sm text-gray-700">
                           I understand this is for educational purposes only and does not replace medical advice. 
-                          I consent to my photo being compared with our database for analysis purposes. 
-                          Photos are not stored permanently.
+                          I consent to my photo being compared with our database for analysis purposes. *
                         </label>
                       </div>
                     </div>
                     
                     <button
                       onClick={handleAnalyze}
-                      disabled={!hasAcceptedTerms || isAnalyzing}
+                      disabled={!hasAcceptedTerms || isAnalyzing || !userDetails.name || !userDetails.email}
                       className="bg-blue-600 text-white px-8 py-3 rounded-md font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isAnalyzing ? 'Analyzing...' : 'Analyze My Scar'}
+                      {isAnalyzing ? loadingStage : 'Analyze My Scar'}
                     </button>
                   </div>
                 )}
@@ -190,9 +241,9 @@ export default function ScarAnalyserPage() {
               {isAnalyzing && (
                 <div className="bg-white rounded-lg p-8 text-center border border-gray-200">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                  <h3 className="text-lg font-semibold text-navy mb-2">Analyzing Your Scar</h3>
+                  <h3 className="text-lg font-semibold text-navy mb-2">{loadingStage}</h3>
                   <p className="text-gray-600">
-                    Comparing with our database of scar examples...
+                    Please wait while we analyse your scar...
                   </p>
                 </div>
               )}
