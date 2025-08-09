@@ -1,13 +1,7 @@
 'use client'
 
-import { Metadata } from 'next'
 import { useState } from 'react'
 import { Play, Quote, Search, Filter } from 'lucide-react'
-
-export const metadata: Metadata = {
-  title: 'Positive C-Section Birth Stories | Real Experiences | CSUK',
-  description: 'Read and watch inspiring positive C-section birth stories from real mothers. Find hope, encouragement, and confidence for your own cesarean journey.',
-}
 
 export default function PositiveBirthStoriesPage() {
   const [searchQuery, setSearchQuery] = useState('')
