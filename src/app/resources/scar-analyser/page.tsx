@@ -316,7 +316,7 @@ export default function ScarAnalyserPage() {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
-                    href="/online-private-education"
+                    href="/private-midwife"
                     className="bg-navy text-white px-6 py-3 rounded-md font-semibold hover:bg-navy-light transition-colors text-center"
                   >
                     Book Private Consultation
@@ -373,7 +373,7 @@ export default function ScarAnalyserPage() {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="/online-private-education"
+              href="/private-midwife"
               className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
             >
               Book Private Session

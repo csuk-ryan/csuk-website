@@ -1,11 +1,9 @@
-import { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
+import { useEffect } from 'react'
 import { CheckCircle, Play, Clock, Star, Heart, Baby, Shield } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Infant Feeding Course Bundle | C-Section Feeding Specialist | CSUK',
-  description: 'Complete infant feeding bundle for c-section mums. Covers breastfeeding, bottle feeding & combination feeding. Led by Midwife Zoe for £79.',
-}
 
 const courses = [
   {
@@ -72,6 +70,191 @@ const testimonials = [
     text: 'The combination feeding course gave me the confidence to do what worked best for my family.'
   }
 ]
+
+const TeachableEmbed = () => {
+  useEffect(() => {
+    // Load Teachable embed script functionality for infant feeding bundle
+    const handleCloseModal = (event: any) => {
+      event.target.closest('.t-modal')?.classList.remove('open');
+      document.body.classList.remove('t-modal-open');
+    };
+
+    const handleTeachableBuyButtonClick = (event: any) => {
+      const embed = event.target.closest('.teachable-embed-feeding-bundle');
+      const radios = embed?.querySelectorAll('input.teachable-pricing-plan-feeding-bundle');
+      
+      radios?.forEach((radio: any) => {
+        if (radio.checked) {
+          window.location.href = radio.value;
+        }
+      });
+    };
+
+    const handleParentPricingPlanClick = (event: any) => {
+      const parentDiv = event.currentTarget.closest('.teachable-embed-feeding-bundle');
+      const divs = Array.from(parentDiv?.querySelectorAll('div') || []).filter((div: any) => {
+        return div.querySelector('label') && div.querySelector('input');
+      });
+
+      divs.forEach((div: any) => {
+        div.style.borderColor = '#E4E4E4';
+      });
+
+      const div = event.currentTarget;
+      const radioButton = div.querySelector('input[type="radio"]');
+      if (radioButton) {
+        radioButton.click();
+        div.style.borderColor = '#A7A7A7';
+      }
+    };
+
+    // Initialize event listeners
+    document.querySelectorAll('.teachable-pricing-plan-feeding-bundle').forEach((radio, index) => {
+      const label = radio.closest('label');
+      const id = radio.getAttribute('id');
+      if (id && !id.includes('-index-')) {
+        const indexedId = id + '-index-' + index;
+        label?.setAttribute('for', indexedId);
+        radio.setAttribute('id', indexedId);
+      }
+      const divEl = label?.closest("div");
+      divEl?.addEventListener("click", handleParentPricingPlanClick);
+    });
+
+    document.querySelectorAll('.teachable-buy-button-feeding-bundle').forEach((button) => {
+      button.addEventListener('click', handleTeachableBuyButtonClick);
+    });
+
+    return () => {
+      // Cleanup event listeners
+      document.querySelectorAll('.teachable-pricing-plan-feeding-bundle').forEach((radio) => {
+        const divEl = radio.closest('div');
+        divEl?.removeEventListener("click", handleParentPricingPlanClick);
+      });
+      document.querySelectorAll('.teachable-buy-button-feeding-bundle').forEach((button) => {
+        button.removeEventListener('click', handleTeachableBuyButtonClick);
+      });
+    };
+  }, []);
+
+  return (
+    <div 
+      className="teachable-embed-feeding-bundle mx-auto" 
+      style={{
+        color: 'rgb(219, 39, 119)',
+        width: '488px',
+        borderRadius: '8px',
+        border: '1px solid rgb(228, 228, 228)',
+        backgroundColor: 'rgb(255, 255, 255)',
+        paddingBottom: '16px',
+        wordBreak: 'break-word'
+      }}
+    >
+      <img 
+        src="/images/courses/feeding-bundle/feeding-course-bundle.webp" 
+        alt="Infant Feeding Course Bundle" 
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '274.5px',
+          borderRadius: '8px 8px 0px 0px'
+        }}
+      />
+      <h1 style={{
+        fontWeight: 600,
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px'
+      }}>
+        Infant Feeding Bundle
+      </h1>
+      <p style={{
+        fontWeight: 400,
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px',
+        lineHeight: '150%'
+      }}>
+        Complete feeding guide for c-section mums with Midwife Zoe.
+      </p>
+      <form>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '16px',
+          borderRadius: '0px',
+          margin: '16px',
+          border: '1px solid rgb(167, 167, 167)'
+        }}>
+          <label 
+            htmlFor="pricing-plan-feeding-bundle" 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontWeight: 400,
+              fontSize: '16px',
+              fontStyle: 'normal',
+              color: 'rgb(219, 39, 119)',
+              maxWidth: 'calc(80%)'
+            }}
+          >
+            <input 
+              className="teachable-pricing-plan-feeding-bundle" 
+              id="pricing-plan-feeding-bundle" 
+              name="pricing-plan" 
+              type="radio" 
+              value="https://courses.csectionuk.com/purchase?product_id=4734008&user_src=embed_buy_button&embed=true"
+              defaultChecked
+              style={{ marginRight: '12px' }}
+            />
+            <span>Feeding Bundle</span>
+          </label>
+          <span style={{
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            fontWeight: 600,
+            fontSize: '16px',
+            fontStyle: 'normal',
+            color: 'rgb(219, 39, 119)'
+          }}>
+            £79
+          </span>
+        </div>
+        <button 
+          className="teachable-buy-button-feeding-bundle" 
+          type="button" 
+          style={{
+            backgroundColor: 'rgb(219, 39, 119)',
+            borderRadius: '8px',
+            border: 'none',
+            color: 'rgb(255, 255, 255)',
+            cursor: 'pointer',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: 600,
+            lineHeight: '150%',
+            margin: '0px 16px 0px',
+            padding: '12px 24px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            width: 'calc(100% - 32px)',
+            transition: 'background-color 0.2s ease'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgb(190, 30, 100)'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgb(219, 39, 119)'}
+        >
+          Get Bundle Now
+        </button>
+      </form>
+    </div>
+  )
+}
 
 export default function InfantFeedingCourseBundlePage() {
   return (
@@ -276,6 +459,17 @@ export default function InfantFeedingCourseBundlePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Teachable Embed */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-navy mb-4">Start Your Feeding Journey</h2>
+            <p className="text-lg text-gray-600">Get expert feeding guidance from Midwife Zoe</p>
+          </div>
+          <TeachableEmbed />
         </div>
       </section>
 

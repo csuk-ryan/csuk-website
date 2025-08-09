@@ -1,10 +1,8 @@
-import { Metadata } from 'next'
-import { Calendar, Video, Clock, CheckCircle, Shield, Heart, User } from 'lucide-react'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Online Private Education Sessions | One-to-One C-Section Support | CSUK',
-  description: '£49.99 one-hour private c-section education sessions with qualified midwives via Zoom. Personalized support tailored to your individual needs and concerns.',
-}
+import { useState } from 'react'
+import { Calendar, Video, Clock, CheckCircle, Shield, Heart, User } from 'lucide-react'
+import CalendarScheduler from '@/components/booking/CalendarScheduler'
 
 const features = [
   {
@@ -35,6 +33,15 @@ const benefits = [
 ]
 
 export default function OnlinePrivateEducationPage() {
+  const [showScheduler, setShowScheduler] = useState(false)
+  const [bookingComplete, setBookingComplete] = useState(false)
+  const [bookingDetails, setBookingDetails] = useState<any>(null)
+
+  const handleBookingComplete = (booking: any) => {
+    setBookingDetails(booking)
+    setBookingComplete(true)
+    setShowScheduler(false)
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -42,7 +49,7 @@ export default function OnlinePrivateEducationPage() {
       <section className="bg-gradient-to-br from-navy to-navy-light text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl font-bold mb-6">Online Private Education Sessions</h1>
+            <h1 className="text-5xl font-bold mb-6">Private Midwife Sessions</h1>
             <p className="text-xl leading-relaxed mb-8">
               One-to-one C-section education with a practicing Midwife via Zoom. 
               Get personalized support tailored to your individual needs and circumstances.
@@ -52,7 +59,10 @@ export default function OnlinePrivateEducationPage() {
               <div className="text-lg">Per 1-hour session</div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors">
+              <button 
+                onClick={() => setShowScheduler(true)}
+                className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+              >
                 Book Your Session
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors">
@@ -136,7 +146,10 @@ export default function OnlinePrivateEducationPage() {
                   NMC registered midwives
                 </div>
               </div>
-              <button className="w-full bg-navy text-white py-3 rounded-md font-semibold hover:bg-navy-light transition-colors mb-3">
+              <button 
+                onClick={() => setShowScheduler(true)}
+                className="w-full bg-navy text-white py-3 rounded-md font-semibold hover:bg-navy-light transition-colors mb-3"
+              >
                 Book Your Session
               </button>
               <button className="w-full border border-navy text-navy py-3 rounded-md font-semibold hover:bg-gray-50 transition-colors">
@@ -223,7 +236,10 @@ export default function OnlinePrivateEducationPage() {
             and support you deserve from our qualified midwives.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors">
+            <button 
+              onClick={() => setShowScheduler(true)}
+              className="bg-white text-navy px-8 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+            >
               Book Your Session - £49.99
             </button>
             <a 
@@ -235,6 +251,51 @@ export default function OnlinePrivateEducationPage() {
           </div>
         </div>
       </section>
+
+      {/* Calendar Scheduler Modal */}
+      {showScheduler && (
+        <CalendarScheduler
+          onClose={() => setShowScheduler(false)}
+          onBookingComplete={handleBookingComplete}
+        />
+      )}
+
+      {/* Booking Confirmation Modal */}
+      {bookingComplete && bookingDetails && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg p-8 max-w-md w-full">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="h-8 w-8 text-green-600" />
+              </div>
+              <h3 className="text-2xl font-bold text-navy mb-4">Booking Confirmed!</h3>
+              <div className="bg-gray-50 rounded-lg p-4 mb-6 text-left">
+                <p><strong>Booking ID:</strong> {bookingDetails.bookingId}</p>
+                <p><strong>Date:</strong> {bookingDetails.date?.toLocaleDateString()}</p>
+                <p><strong>Time:</strong> {bookingDetails.time}</p>
+                <p><strong>Price:</strong> £{bookingDetails.price}</p>
+              </div>
+              <p className="text-gray-600 mb-6">
+                You'll receive a confirmation email with your Zoom link and session details within the next few minutes.
+              </p>
+              <div className="space-y-3">
+                <button 
+                  onClick={() => window.print()}
+                  className="w-full bg-navy text-white py-2 px-4 rounded-md font-medium hover:bg-navy-light transition-colors"
+                >
+                  Print Confirmation
+                </button>
+                <button 
+                  onClick={() => setBookingComplete(false)}
+                  className="w-full border border-gray-300 text-gray-700 py-2 px-4 rounded-md font-medium hover:bg-gray-50 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

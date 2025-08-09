@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
-import { Users, Heart, BookOpen } from 'lucide-react'
+import { Users, Heart, BookOpen, Award, TrendingUp, Calendar } from 'lucide-react'
 
 export const metadata: Metadata = {
   title: 'About CSUK | C-Section UK - Expert-Led C-Section Education',
@@ -136,7 +136,7 @@ export default function About() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="bg-white rounded-lg p-8 shadow-sm text-center">
+              <div key={index} className="bg-white rounded-lg p-8 shadow-sm text-center hover:shadow-md hover:scale-105 transition-all duration-200">
                 <div className="flex justify-center mb-4">
                   {value.icon}
                 </div>
@@ -182,6 +182,94 @@ export default function About() {
         </div>
       </section>
 
+      {/* Press & Media */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-navy mb-4">Press & Media</h2>
+            <p className="text-lg text-gray-600">
+              CSUK has been featured by leading parenting and healthcare publications
+            </p>
+          </div>
+
+          {/* Media Stats */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex justify-center mb-4">
+                <Users className="h-12 w-12 text-blue-600" />
+              </div>
+              <div className="text-3xl font-bold text-navy mb-2">50,000+</div>
+              <div className="text-gray-600">Parents Supported</div>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex justify-center mb-4">
+                <TrendingUp className="h-12 w-12 text-green-600" />
+              </div>
+              <div className="text-3xl font-bold text-navy mb-2">98%</div>
+              <div className="text-gray-600">Positive Feedback</div>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex justify-center mb-4">
+                <Award className="h-12 w-12 text-yellow-600" />
+              </div>
+              <div className="text-3xl font-bold text-navy mb-2">5+</div>
+              <div className="text-gray-600">Years Experience</div>
+            </div>
+          </div>
+
+          {/* Featured In */}
+          <div className="text-center mb-8">
+            <h3 className="text-xl font-semibold text-navy mb-6">As Featured In</h3>
+            <div className="flex justify-center items-center space-x-8 flex-wrap gap-6">
+              <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/images/press-media/logos/hoppy-home.jpeg.webp"
+                  alt="Hoppy Home"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/images/press-media/logos/mama-mio.png.webp"
+                  alt="Mama Mio"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+              <div className="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <Image
+                  src="/images/press-media/logos/the+list.jpeg.webp"
+                  alt="The List"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Media Kit CTA */}
+          <div className="text-center">
+            <div className="bg-white rounded-lg p-8 shadow-sm max-w-2xl mx-auto">
+              <Calendar className="h-12 w-12 text-navy mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-navy mb-4">Media Enquiries</h3>
+              <p className="text-gray-600 mb-6">
+                For interviews, expert commentary, or press materials, contact our media team.
+              </p>
+              <a
+                href="/contact-us"
+                className="bg-navy text-white px-6 py-3 rounded-md font-semibold hover:bg-navy-light transition-colors inline-block"
+              >
+                Contact Media Team
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-navy text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -197,7 +285,7 @@ export default function About() {
               View Our Courses
             </a>
             <a 
-              href="/online-private-education" 
+              href="/private-midwife" 
               className="inline-block border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors"
             >
               Book Private Session

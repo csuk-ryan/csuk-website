@@ -70,27 +70,36 @@ export default function PressMedia() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-navy to-navy-light text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Press & Media</h1>
-            <p className="text-xl leading-relaxed mb-8">
-              Discover our media presence, partnerships, and opportunities to collaborate with 
-              CSUK and founder Midwife Vic in sharing expert c-section education.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a 
-                href="mailto:media@csectionuk.com"
-                className="inline-flex items-center bg-white text-navy px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
-              >
-                <Mail className="h-5 w-5 mr-2" />
-                Media Inquiries
-              </a>
-              <a 
-                href="mailto:midwifevic@komi.group"
-                className="inline-flex items-center border-2 border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors"
-              >
-                <Mail className="h-5 w-5 mr-2" />
-                Midwife Vic Inquiries
-              </a>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-5xl font-bold mb-6">Press & Media</h1>
+              <p className="text-xl leading-relaxed mb-8">
+                Discover our media presence, partnerships, and opportunities to collaborate with 
+                CSUK and founder Midwife Vic in sharing expert c-section education.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a 
+                  href="mailto:media@csectionuk.com"
+                  className="inline-flex items-center bg-white text-navy px-6 py-3 rounded-md font-semibold hover:bg-gray-100 transition-colors"
+                >
+                  <Mail className="h-5 w-5 mr-2" />
+                  Media Inquiries
+                </a>
+                <a 
+                  href="mailto:midwifevic@komi.group"
+                  className="inline-flex items-center border-2 border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors"
+                >
+                  <Mail className="h-5 w-5 mr-2" />
+                  Midwife Vic Inquiries
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src="/images/private-education/vic2.webp" 
+                alt="Press & Media - CSUK" 
+                className="max-w-md w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
@@ -107,15 +116,39 @@ export default function PressMedia() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {mediaFeatures.map((feature, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm p-8 text-center hover:shadow-md transition-shadow">
-                <div className="h-20 bg-gray-100 rounded-lg mb-6 flex items-center justify-center">
-                  <span className="text-gray-500 font-semibold">{feature.publication}</span>
-                </div>
-                <h3 className="text-xl font-semibold text-navy mb-3">{feature.publication}</h3>
-                <p className="text-gray-700 leading-relaxed">{feature.description}</p>
+            <div className="bg-white rounded-lg shadow-sm p-8 text-center hover:shadow-md transition-shadow">
+              <div className="h-20 bg-white rounded-lg mb-6 flex items-center justify-center">
+                <img 
+                  src="/images/press-media/logos/hoppy-home.jpeg.webp" 
+                  alt="Hoppy Home" 
+                  className="max-h-16 w-auto object-contain"
+                />
               </div>
-            ))}
+              <h3 className="text-xl font-semibold text-navy mb-3">Hoppy Home</h3>
+              <p className="text-gray-700 leading-relaxed">Featured expert content on c-section preparation and recovery</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-8 text-center hover:shadow-md transition-shadow">
+              <div className="h-20 bg-white rounded-lg mb-6 flex items-center justify-center">
+                <img 
+                  src="/images/press-media/logos/mama-mio.png.webp" 
+                  alt="Mama Mio" 
+                  className="max-h-16 w-auto object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-navy mb-3">Mama Mio</h3>
+              <p className="text-gray-700 leading-relaxed">Ongoing residency providing expert c-section and pregnancy advice</p>
+            </div>
+            <div className="bg-white rounded-lg shadow-sm p-8 text-center hover:shadow-md transition-shadow">
+              <div className="h-20 bg-white rounded-lg mb-6 flex items-center justify-center">
+                <img 
+                  src="/images/press-media/logos/the+list.jpeg.webp" 
+                  alt="The List" 
+                  className="max-h-16 w-auto object-contain"
+                />
+              </div>
+              <h3 className="text-xl font-semibold text-navy mb-3">The List</h3>
+              <p className="text-gray-700 leading-relaxed">Expert commentary on c-section trends and maternal health</p>
+            </div>
           </div>
         </div>
       </section>
@@ -203,8 +236,12 @@ export default function PressMedia() {
               </div>
             </div>
             <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="aspect-square bg-gray-200 rounded-lg mb-6 flex items-center justify-center">
-                <span className="text-gray-400 text-sm">Midwife Vic Professional Photo</span>
+              <div className="aspect-square rounded-lg mb-6 overflow-hidden">
+                <img 
+                  src="/images/private-education/vic1.webp" 
+                  alt="Midwife Vic Professional Photo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="text-center">
                 <h3 className="text-xl font-semibold text-navy mb-2">Victoria (Midwife Vic)</h3>
@@ -213,6 +250,35 @@ export default function PressMedia() {
                   Represented by Komi Talent for media and collaboration opportunities
                 </p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Media Kit Section */}
+      <section className="py-16 bg-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-navy mb-4">Media Kit</h2>
+            <p className="text-lg text-gray-600 mb-8">
+              Download our comprehensive media kit with logos, images, and brand guidelines
+            </p>
+            <button className="bg-navy text-white px-8 py-4 rounded-md font-semibold hover:bg-navy-light transition-colors">
+              Download Media Kit (PDF)
+            </button>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8 mt-12">
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm">
+              <h3 className="font-semibold text-navy mb-2">Brand Assets</h3>
+              <p className="text-sm text-gray-600">Logos, colors, and brand guidelines</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm">
+              <h3 className="font-semibold text-navy mb-2">Professional Photos</h3>
+              <p className="text-sm text-gray-600">High-resolution images of Midwife Vic</p>
+            </div>
+            <div className="bg-white rounded-lg p-6 text-center shadow-sm">
+              <h3 className="font-semibold text-navy mb-2">Company Information</h3>
+              <p className="text-sm text-gray-600">Statistics, achievements, and key facts</p>
             </div>
           </div>
         </div>

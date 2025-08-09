@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, User } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -35,11 +35,12 @@ export default function Header() {
     { name: 'Recovery Timeline', href: '/resources/recovery-timeline', description: 'Track your healing journey step-by-step' },
     { name: 'Affirmation Generator', href: '/resources/affirmation-generator', description: 'Positive self-talk for your c-section' },
     { name: 'Baby Name Generator', href: '/resources/baby-name-generator', description: 'Find the perfect name for your little one' },
+    { name: 'Hospital Bag Checklist', href: '/resources/hospital-bag-checklist', description: 'Personalized packing list for your c-section birth' },
   ]
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Private Education', href: '/online-private-education' },
+    { name: 'Private Midwife', href: '/private-midwife' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact-us' },
   ]
@@ -53,7 +54,7 @@ export default function Header() {
               <div className="w-10 h-10 bg-navy rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">C</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-navy">CSUK</span>
+              <span className="ml-2 text-xl font-bold text-navy">C-Section UK</span>
             </Link>
           </div>
 
@@ -73,7 +74,7 @@ export default function Header() {
                   Courses
                   <ChevronDown size={16} className="ml-1" />
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-96 bg-white shadow-xl rounded-lg border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute top-full left-0 mt-2 w-[480px] bg-white shadow-xl rounded-lg border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   <div className="p-6">
                     <div className="grid grid-cols-2 gap-6">
                       {coursesDropdown.map((category) => (
@@ -109,7 +110,7 @@ export default function Header() {
                           Speak to our team
                         </a>
                         <a
-                          href="/online-private-education"
+                          href="/private-midwife"
                           className="bg-navy text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-navy-light transition-colors"
                         >
                           Book a private midwife session
@@ -120,12 +121,12 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Private Education */}
+              {/* Private Midwife */}
               <Link
-                href="/online-private-education"
+                href="/private-midwife"
                 className="text-navy hover:text-navy-light px-3 py-2 rounded-md text-sm font-medium transition-colors"
               >
-                Private Education
+                Private Midwife
               </Link>
 
               {/* About */}
@@ -169,7 +170,7 @@ export default function Header() {
                           Speak to our team
                         </a>
                         <a
-                          href="/online-private-education"
+                          href="/private-midwife"
                           className="bg-navy text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-navy-light transition-colors"
                         >
                           Book a private midwife session
@@ -191,13 +192,17 @@ export default function Header() {
           </div>
 
           <div className="hidden md:block">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-4">
+              {/* Divider line */}
+              <div className="h-6 w-px bg-gray-300"></div>
+              
               <a
                 href="https://sso.teachable.com/secure/1583694/identity/login/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-navy hover:text-navy-light px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                className="text-navy hover:text-navy-light px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center"
               >
+                <User className="h-4 w-4 mr-2" />
                 Login
               </a>
               <Link

@@ -31,7 +31,7 @@ export default function ContactUs() {
     },
     {
       question: 'Do you offer refunds?',
-      answer: 'Yes, we offer refunds within our policy terms. Please see our Refund Policy for full details.'
+      answer: 'Yes, we offer refunds within our policy terms.'
     }
   ]
 
@@ -105,31 +105,41 @@ export default function ContactUs() {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-navy to-navy-light text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold mb-6">Get In Touch</h1>
-            <p className="text-xl leading-relaxed">
-              We're here to support you on your c-section journey. Reach out to us for 
-              general inquiries, course questions, or partnership opportunities.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Important Notice */}
-      <section className="py-8 bg-amber-50 border-l-4 border-amber-400">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start">
-            <AlertTriangle className="h-6 w-6 text-amber-600 mt-1 mr-3 flex-shrink-0" />
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h3 className="text-lg font-semibold text-amber-800 mb-2">Important Notice</h3>
-              <p className="text-amber-700">
-                <strong>We cannot respond to personal medical requests or messages.</strong> For any health-related 
-                concerns or medical advice, please consult your healthcare provider, midwife, or doctor directly.
+              <h1 className="text-5xl font-bold mb-6">Get In Touch</h1>
+              <p className="text-xl leading-relaxed mb-8">
+                We're here to support you on your c-section journey. Reach out to us for 
+                general inquiries, course questions, or partnership opportunities.
               </p>
+              
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a 
+                  href="#social"
+                  className="bg-white bg-opacity-20 text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-30 transition-colors text-center"
+                >
+                  Follow on Social Media
+                </a>
+                <a 
+                  href="/our-partners"
+                  className="border-2 border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-white hover:text-navy transition-colors text-center"
+                >
+                  Become a Partner
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src="/images/contact/contact.webp" 
+                alt="Contact CSUK" 
+                className="max-w-md w-full h-auto rounded-lg shadow-lg"
+              />
             </div>
           </div>
         </div>
       </section>
+
 
       {/* Contact Methods */}
       <section className="py-16">
@@ -267,7 +277,7 @@ export default function ContactUs() {
       </section>
 
       {/* Social Media */}
-      <section className="py-16">
+      <section id="social" className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-navy mb-4">Connect With Us</h2>
@@ -292,6 +302,18 @@ export default function ContactUs() {
                 <p className="text-gray-600 text-sm">{social.handle}</p>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Important Notice - Subtle */}
+      <section className="py-8 bg-gray-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-gray-600 text-sm">
+              <strong>Medical Disclaimer:</strong> We cannot provide individual medical advice. 
+              For health-related concerns, please consult your healthcare provider.
+            </p>
           </div>
         </div>
       </section>

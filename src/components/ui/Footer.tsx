@@ -81,13 +81,8 @@ export default function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/courses" className="text-gray-300 hover:text-white transition-colors">
-                  Courses
-                </Link>
-              </li>
-              <li>
-                <Link href="/online-private-education" className="text-gray-300 hover:text-white transition-colors">
-                  Private Education
+                <Link href="/private-midwife" className="text-gray-300 hover:text-white transition-colors">
+                  Private Midwife
                 </Link>
               </li>
               <li>

@@ -28,7 +28,7 @@ export default function Hero() {
                 className="border-2 border-navy text-navy px-8 py-4 rounded-lg font-semibold hover:bg-navy hover:text-white transition-colors inline-flex items-center justify-center"
               >
                 <PlayCircle className="mr-2" size={20} />
-                Speak a Midwife
+                Speak to a Midwife
               </Link>
             </div>
           </div>

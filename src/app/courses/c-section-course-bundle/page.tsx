@@ -1,11 +1,8 @@
-import { Metadata } from 'next'
-import Link from 'next/link'
-import { CheckCircle, Play, Download, Clock, Star, Users, Shield } from 'lucide-react'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'C-Section Course Bundle | Complete Prep, Birth & Recovery | CSUK',
-  description: 'Complete C-section education bundle covering prep, birth, and recovery. 3 expert-led courses for £99. Reduce anxiety, increase confidence with lifetime access.',
-}
+import Link from 'next/link'
+import { useEffect } from 'react'
+import { CheckCircle, Play, Download, Clock, Star, Users, Shield } from 'lucide-react'
 
 const courses = [
   {
@@ -58,6 +55,191 @@ const benefits = [
   'Download helpful resources and templates',
   'Enjoy guided relaxation audios'
 ]
+
+const TeachableEmbed = () => {
+  useEffect(() => {
+    // Load Teachable embed script functionality for course bundle
+    const handleCloseModal = (event: any) => {
+      event.target.closest('.t-modal')?.classList.remove('open');
+      document.body.classList.remove('t-modal-open');
+    };
+
+    const handleTeachableBuyButtonClick = (event: any) => {
+      const embed = event.target.closest('.teachable-embed-course-bundle');
+      const radios = embed?.querySelectorAll('input.teachable-pricing-plan-course-bundle');
+      
+      radios?.forEach((radio: any) => {
+        if (radio.checked) {
+          window.location.href = radio.value;
+        }
+      });
+    };
+
+    const handleParentPricingPlanClick = (event: any) => {
+      const parentDiv = event.currentTarget.closest('.teachable-embed-course-bundle');
+      const divs = Array.from(parentDiv?.querySelectorAll('div') || []).filter((div: any) => {
+        return div.querySelector('label') && div.querySelector('input');
+      });
+
+      divs.forEach((div: any) => {
+        div.style.borderColor = '#E4E4E4';
+      });
+
+      const div = event.currentTarget;
+      const radioButton = div.querySelector('input[type="radio"]');
+      if (radioButton) {
+        radioButton.click();
+        div.style.borderColor = '#A7A7A7';
+      }
+    };
+
+    // Initialize event listeners
+    document.querySelectorAll('.teachable-pricing-plan-course-bundle').forEach((radio, index) => {
+      const label = radio.closest('label');
+      const id = radio.getAttribute('id');
+      if (id && !id.includes('-index-')) {
+        const indexedId = id + '-index-' + index;
+        label?.setAttribute('for', indexedId);
+        radio.setAttribute('id', indexedId);
+      }
+      const divEl = label?.closest("div");
+      divEl?.addEventListener("click", handleParentPricingPlanClick);
+    });
+
+    document.querySelectorAll('.teachable-buy-button-course-bundle').forEach((button) => {
+      button.addEventListener('click', handleTeachableBuyButtonClick);
+    });
+
+    return () => {
+      // Cleanup event listeners
+      document.querySelectorAll('.teachable-pricing-plan-course-bundle').forEach((radio) => {
+        const divEl = radio.closest('div');
+        divEl?.removeEventListener("click", handleParentPricingPlanClick);
+      });
+      document.querySelectorAll('.teachable-buy-button-course-bundle').forEach((button) => {
+        button.removeEventListener('click', handleTeachableBuyButtonClick);
+      });
+    };
+  }, []);
+
+  return (
+    <div 
+      className="teachable-embed-course-bundle mx-auto" 
+      style={{
+        color: 'rgb(0, 40, 85)',
+        width: '488px',
+        borderRadius: '8px',
+        border: '1px solid rgb(228, 228, 228)',
+        backgroundColor: 'rgb(255, 255, 255)',
+        paddingBottom: '16px',
+        wordBreak: 'break-word'
+      }}
+    >
+      <img 
+        src="/images/courses/csuk-bundle/bundle.webp" 
+        alt="C-Section Course Bundle" 
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '274.5px',
+          borderRadius: '8px 8px 0px 0px'
+        }}
+      />
+      <h1 style={{
+        fontWeight: 600,
+        fontSize: '32px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px'
+      }}>
+        C-Section Course Bundle
+      </h1>
+      <p style={{
+        fontWeight: 400,
+        fontSize: '16px',
+        fontStyle: 'normal',
+        fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+        padding: '16px 16px 0px',
+        lineHeight: '150%'
+      }}>
+        Complete c-section education covering prep, birth, and recovery.
+      </p>
+      <form>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: '16px',
+          borderRadius: '0px',
+          margin: '16px',
+          border: '1px solid rgb(167, 167, 167)'
+        }}>
+          <label 
+            htmlFor="pricing-plan-bundle" 
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+              fontWeight: 400,
+              fontSize: '16px',
+              fontStyle: 'normal',
+              color: 'rgb(0, 40, 85)',
+              maxWidth: 'calc(80%)'
+            }}
+          >
+            <input 
+              className="teachable-pricing-plan-course-bundle" 
+              id="pricing-plan-bundle" 
+              name="pricing-plan" 
+              type="radio" 
+              value="https://courses.csectionuk.com/purchase?product_id=4734007&user_src=embed_buy_button&embed=true"
+              defaultChecked
+              style={{ marginRight: '12px' }}
+            />
+            <span>Complete Bundle</span>
+          </label>
+          <span style={{
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            fontWeight: 600,
+            fontSize: '16px',
+            fontStyle: 'normal',
+            color: 'rgb(0, 40, 85)'
+          }}>
+            £99
+          </span>
+        </div>
+        <button 
+          className="teachable-buy-button-course-bundle" 
+          type="button" 
+          style={{
+            backgroundColor: 'rgb(0, 40, 85)',
+            borderRadius: '8px',
+            border: 'none',
+            color: 'rgb(255, 255, 255)',
+            cursor: 'pointer',
+            fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+            fontSize: '16px',
+            fontStyle: 'normal',
+            fontWeight: 600,
+            lineHeight: '150%',
+            margin: '0px 16px 0px',
+            padding: '12px 24px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            width: 'calc(100% - 32px)',
+            transition: 'background-color 0.2s ease'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgb(0, 50, 95)'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgb(0, 40, 85)'}
+        >
+          Get Bundle Now
+        </button>
+      </form>
+    </div>
+  )
+}
 
 export default function CSectionCourseBundlePage() {
   return (
@@ -230,6 +412,17 @@ export default function CSectionCourseBundlePage() {
               Perfect complement to complete your c-section education journey
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Teachable Embed */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-navy mb-4">Get Your Bundle Now</h2>
+            <p className="text-lg text-gray-600">Join thousands of parents who feel confident about their c-section birth</p>
+          </div>
+          <TeachableEmbed />
         </div>
       </section>
 
